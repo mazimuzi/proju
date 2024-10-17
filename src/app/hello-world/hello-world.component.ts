@@ -11,5 +11,5 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrl: './hello-world.component.css'
 })
 export class HelloWorldComponent {
-
+  title = 'mutsis on';
 }
