@@ -1,0 +1,14 @@
+<div class="calculator">
+  <div class="display">{{ display }}</div>
+  <div class="buttons">
+    <div *ngFor="let row of buttons" class="button-row">
+      <button 
+        *ngFor="let btn of row" 
+        (click)="btn === 'C' || btn === '=' || btn === '+' || btn === '-' || btn === '*' || btn === '/' ? getOperation(btn) : getNumber(btn)"
+        [class.operator]="btn === '+' || btn === '-' || btn === '*' || btn === '/' || btn === '='"
+        [class.clear]="btn === 'C'">
+        {{ btn }}
+      </button>
+    </div>
+  </div>
+</div>
