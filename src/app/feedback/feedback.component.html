@@ -1,1 +1,13 @@
-<p>feedback works!</p>
+<div class="feedback-container">
+    <div class="question-item" *ngFor="let question of questions">
+        <div class="question-text">{{ question.question }}</div>
+        <div class="slider-container">
+            <input type="range" 
+                   min="0" 
+                   max="100" 
+                   [value]="question.value"
+                   (input)="onSliderChange(question, $any($event.target).value)">
+            <span class="feedback-text">{{ question.feedback }}</span>
+        </div>
+    </div>
+</div>
