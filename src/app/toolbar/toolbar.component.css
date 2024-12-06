@@ -1,0 +1,20 @@
+mat-toolbar {
+  margin-bottom: 1rem;
+}
+
+mat-toolbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 8px;
+}
+
+mat-toolbar a:hover {
+  opacity: 0.8;
+}
+
+:host {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
