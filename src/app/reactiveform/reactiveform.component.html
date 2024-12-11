@@ -1,0 +1,77 @@
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" formControlName="firstName">
+    <div *ngIf="personForm.controls['firstName'].invalid && personForm.controls['firstName'].touched">
+      <small *ngIf="personForm.controls['firstName'].errors?.['required']">First name is required.</small>
+      <small *ngIf="personForm.controls['firstName'].errors?.['minlength']">First name must be at least 2 characters long.</small>
+      <small *ngIf="personForm.controls['firstName'].errors?.['pattern']">Only letters are allowed.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" formControlName="lastName">
+    <div *ngIf="personForm.controls['lastName'].invalid && personForm.controls['lastName'].touched">
+      <small *ngIf="personForm.controls['lastName'].errors?.['required']">Last name is required.</small>
+      <small *ngIf="personForm.controls['lastName'].errors?.['minlength']">Last name must be at least 2 characters long.</small>
+      <small *ngIf="personForm.controls['lastName'].errors?.['pattern']">Only letters are allowed.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email">
+    <div *ngIf="personForm.controls['email'].invalid && personForm.controls['email'].touched">
+      <small *ngIf="personForm.controls['email'].errors?.['required']">Email is required.</small>
+      <small *ngIf="personForm.controls['email'].errors?.['pattern']">Invalid email format.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" id="username" formControlName="username">
+    <div *ngIf="personForm.controls['username'].invalid && personForm.controls['username'].touched">
+      <small *ngIf="personForm.controls['username'].errors?.['required']">Username is required.</small>
+      <small *ngIf="personForm.controls['username'].errors?.['minlength']">Username must be at least 6 characters long.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" formControlName="password">
+    <div *ngIf="personForm.controls['password'].invalid && personForm.controls['password'].touched">
+      <small *ngIf="personForm.controls['password'].errors?.['required']">Password is required.</small>
+      <small *ngIf="personForm.controls['password'].errors?.['minlength']">Password must be at least 10 characters long.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="passwordConfirmation">Confirm Password:</label>
+    <input type="password" id="passwordConfirmation" formControlName="passwordConfirmation">
+    <div *ngIf="person.password !== person.passwordConfirmation && person.passwordConfirmation">
+      <small>Passwords do not match.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="personalId">Personal ID:</label>
+    <input type="text" id="personalId" formControlName="personalId">
+    <div *ngIf="personForm.controls['personalId'].invalid && personForm.controls['personalId'].touched">
+      <small *ngIf="personForm.controls['personalId'].errors?.['required']">Personal ID is required.</small>
+      <small *ngIf="personForm.controls['personalId'].errors?.['pattern']">Invalid Personal ID format.</small>
+    </div>
+  </div>
+
+  <div>
+    <label>
+      <input type="checkbox" formControlName="termsAccepted">
+      I accept the terms of use
+    </label>
+    <div *ngIf="!personForm.controls['termsAccepted'].value">
+      <small>You must accept the terms of use.</small>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="personForm.invalid">Submit</button>
+</form>
