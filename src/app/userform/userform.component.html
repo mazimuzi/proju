@@ -1,0 +1,77 @@
+<form #userForm="ngForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" [(ngModel)]="person.firstName" name="firstName" required minlength="2" pattern="[A-Za-z]*" (ngModelChange)="validateForm()">
+    <div *ngIf="userForm.controls['firstName']?.invalid && userForm.controls['firstName']?.touched">
+      <small *ngIf="userForm.controls['firstName']?.errors?.['required']">First name is required.</small>
+      <small *ngIf="userForm.controls['firstName']?.errors?.['minlength']">First name must be at least 2 characters long.</small>
+      <small *ngIf="userForm.controls['firstName']?.errors?.['pattern']">Only letters are allowed.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" [(ngModel)]="person.lastName" name="lastName" required minlength="2" pattern="[A-Za-z]*" (ngModelChange)="validateForm()">
+    <div *ngIf="userForm.controls['lastName']?.invalid && userForm.controls['lastName']?.touched">
+      <small *ngIf="userForm.controls['lastName']?.errors?.['required']">Last name is required.</small>
+      <small *ngIf="userForm.controls['lastName']?.errors?.['minlength']">Last name must be at least 2 characters long.</small>
+      <small *ngIf="userForm.controls['lastName']?.errors?.['pattern']">Only letters are allowed.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" [(ngModel)]="person.email" name="email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" (ngModelChange)="validateForm()">
+    <div *ngIf="userForm.controls['email']?.invalid && userForm.controls['email']?.touched">
+      <small *ngIf="userForm.controls['email']?.errors?.['required']">Email is required.</small>
+      <small *ngIf="userForm.controls['email']?.errors?.['pattern']">Invalid email format.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" id="username" [(ngModel)]="person.username" name="username" required minlength="6" (ngModelChange)="validateForm()">
+    <div *ngIf="userForm.controls['username']?.invalid && userForm.controls['username']?.touched">
+      <small *ngIf="userForm.controls['username']?.errors?.['required']">Username is required.</small>
+      <small *ngIf="userForm.controls['username']?.errors?.['minlength']">Username must be at least 6 characters long.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" [(ngModel)]="person.password" name="password" required minlength="10" (ngModelChange)="validateForm()">
+    <div *ngIf="userForm.controls['password']?.invalid && userForm.controls['password']?.touched">
+      <small *ngIf="userForm.controls['password']?.errors?.['required']">Password is required.</small>
+      <small *ngIf="userForm.controls['password']?.errors?.['minlength']">Password must be at least 10 characters long.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="passwordConfirmation">Confirm Password:</label>
+    <input type="password" id="passwordConfirmation" [(ngModel)]="person.passwordConfirmation" name="passwordConfirmation" required (ngModelChange)="validateForm()">
+    <div *ngIf="person.password !== person.passwordConfirmation && person.passwordConfirmation">
+      <small>Passwords do not match.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="personalId">Personal ID:</label>
+    <input type="text" id="personalId" [(ngModel)]="person.personalId" name="personalId" required pattern="^\d{6}-\d{4}$" (ngModelChange)="validateForm()">
+    <div *ngIf="userForm.controls['personalId']?.invalid && userForm.controls['personalId']?.touched">
+      <small *ngIf="userForm.controls['personalId']?.errors?.['required']">Personal ID is required.</small>
+      <small *ngIf="userForm.controls['personalId']?.errors?.['pattern']">Invalid Personal ID format.</small>
+    </div>
+  </div>
+
+  <div>
+    <label>
+      <input type="checkbox" [(ngModel)]="person.termsAccepted" name="termsAccepted" required (ngModelChange)="validateForm()">
+      I accept the terms of use
+    </label>
+    <div *ngIf="!person.termsAccepted">
+      <small>You must accept the terms of use.</small>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="!formValid">Submit</button>
+</form>
